@@ -89,7 +89,7 @@
 const int PPR = 234;
 
 // ── Ciclo de control ──
-#define INTERVAL_MS 20   // 50 Hz
+#define INTERVAL_MS 50   // 50 Hz
 
 // =====================================================
 //  VARIABLES ENCODER
@@ -139,7 +139,7 @@ unsigned long lastTime = 0;
 // =====================================================
 //  WATCHDOG
 // =====================================================
-const unsigned long WATCHDOG_MS = 2000;
+const unsigned long WATCHDOG_MS = 5000;
 unsigned long lastCmdTime = 0;
 
 // =====================================================
@@ -158,7 +158,7 @@ void setup() {
   pinMode(BIN1_H2,OUTPUT); pinMode(BIN2_H2,OUTPUT);
   pinMode(STBY_H2,OUTPUT); digitalWrite(STBY_H2, HIGH);
 
-  stopAll();
+  //stopAll();
 
   // Encoders con pull-up interno
   pinMode(ENC1A,INPUT_PULLUP); pinMode(ENC1B,INPUT_PULLUP);
@@ -203,8 +203,8 @@ void loop() {
     lastCmdTime = millis();
     processCommand(cmd);
   }
+  
 }
-
 // =====================================================
 //  CALCULAR RPM
 // =====================================================
