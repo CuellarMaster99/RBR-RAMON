@@ -1,0 +1,10 @@
+Added Component: Designator=D?(LED_GREEN)
+Added Component: Designator=J?(Bornera_azul_2pines)
+Added Component: Designator=R?(330R_0.25W)
+Added Pin To Net: NetName=GND Pin=D?-1
+Added Pin To Net: NetName=GND Pin=D?-1
+Add Pin To Net: Unknown Pin: Pin D?-2
+Added Pin To Net: NetName=VCC Pin=J?-1
+Added Pin To Net: NetName=GND Pin=J?-2
+Added Pin To Net: NetName=VCC Pin=R?-1
+Added Pin To Net: NetName=NetD?_2 Pin=R?-2
