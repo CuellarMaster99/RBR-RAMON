@@ -1114,6 +1114,13 @@ PartTypes=0
 Net1=NetName=+12|NetColor=clLime
 Net2=NetName=+5|NetColor=clYellow
 Net3=NetName=GND|NetColor=$00471B74
+Net4=NetName=NetA?_2|NetColor=clBlack
+Net5=NetName=Netj1?_M1-|NetColor=clBlack
+Net6=NetName=Netj1?_M1+|NetColor=clRed
+Net7=NetName=Netj2?_M2+|NetColor=clRed
+Net8=NetName=Netj3?_M3+|NetColor=clRed
+Net9=NetName=Netj4?_M4-|NetColor=clBlack
+Net10=NetName=Netj4?_M4+|NetColor=clRed
 
 [Comparison Options]
 ComparisonOptions0=Kind=Net|MinPercent=75|MinMatch=3|ShowMatch=0|UseName=-1|InclAllRules=0
