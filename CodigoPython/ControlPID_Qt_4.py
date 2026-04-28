@@ -27,7 +27,7 @@ import matplotlib.gridspec as gridspec
 # ═══════════════════════════════════════════════════════
 #  CONFIGURACIÓN
 # ═══════════════════════════════════════════════════════
-SERIAL_PORT  = "COM4"       # Windows: "COM3"  /  Linux: "/dev/ttyUSB0"
+SERIAL_PORT  = "COM6"       # Windows: "COM3"  /  Linux: "/dev/ttyUSB0"
 SERIAL_BAUD  = 115200
 
 MAX_RPM      = 150.0

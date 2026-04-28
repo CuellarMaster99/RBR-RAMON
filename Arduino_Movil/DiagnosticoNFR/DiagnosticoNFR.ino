@@ -43,7 +43,7 @@ void setup() {
   delay(20);
 
   // Configuracion MINIMA — sin enableAckPayload
-  radio.setPALevel(RF24_PA_MIN);
+  radio.setPALevel(RF24_PA_MAX);
   radio.setDataRate(RF24_250KBPS);
   radio.setChannel(108);
   radio.setRetries(15, 15);
