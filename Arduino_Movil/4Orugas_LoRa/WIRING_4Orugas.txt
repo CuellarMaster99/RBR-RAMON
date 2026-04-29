@@ -1,0 +1,129 @@
+================================================================================
+  ESQUEMA DE CONEXIONES — Arduino Mega 2560 + 2× TB6612FNG + 4 encoders
+  Proyecto: 4Orugas_LoRa  (4Orugas_LoRa.ino)
+================================================================================
+
+ALIMENTACIÓN (muy importante)
+-----------------------------
+  • Mega 2560: USB o jack 7–12 V (regulador interno a 5 V).
+  • TB6612 VCC (lógica): 5 V del Mega (mismo GND).
+  • TB6612 VM (motores): fuente externa acorde a tus motores (p. ej. 12 V).
+  • GND: unir en estrella o plano común: Mega GND + GND fuente VM + GND de cada
+    TB6612 + GND encoders. Sin GND común no hay señales ni PWM fiables.
+
+  • Pin STBY de cada TB6612 → salida digital del Mega (HIGH = driver activo).
+
+
+VISTA EN BLOQUES
+----------------
+
+                    +------------------+
+                    |   Fuente 12 V    |---- VM (ambos TB6612)
+                    +--------+---------+
+                             |
+                             GND---------------- GND común (Mega + drivers + enc)
+                             |
+        +--------------------+--------------------+
+        |                    |                    |
+   +----+-----+        +-----+-----+        +-----+-----+
+   | TB6612#1 |        | TB6612#2 |        | Mega2560 |
+   | Oruga IZQ|        | Oruga DER|        |          |
+   +----------+        +----------+        +----------+
+   M1 canal A          M2 canal A          Serial USB / comandos
+   M3 canal B          M4 canal B          Encoders → pines tabla abajo
+
+
+TB6612FNG (módulo típico) — Driver 1 (oruga izquierda: M1 + M3)
+---------------------------------------------------------------
+  Pin módulo      →  Arduino Mega    Notas
+  ---------------    --------------    -----
+  VCC             →  5V
+  GND             →  GND
+  VM              →  + de batería/fuente motores (12 V típ.)
+  STBY            →  D26  (HIGH = encendido)
+
+  Canal A (motor M1):
+  PWMA            →  D2   (PWM)
+  AIN1            →  D22
+  AIN2            →  D23
+  AO1 / AO2       →  Motor M1 (dos cables; si va al revés, intercámbialos)
+
+  Canal B (motor M3):
+  PWMB            →  D3   (PWM)
+  BIN1            →  D24
+  BIN2            →  D25
+  BO1 / BO2       →  Motor M3
+
+
+TB6612FNG — Driver 2 (oruga derecha: M2 + M4)
+---------------------------------------------
+  STBY            →  D31  (HIGH)
+
+  Canal A (motor M2):
+  PWMA            →  D4   (PWM)
+  AIN1            →  D27
+  AIN2            →  D28
+  AO1 / AO2       →  Motor M2
+
+  Canal B (motor M4):
+  PWMB            →  D5   (PWM)
+  BIN1            →  D29
+  BIN2            →  D30
+  BO1 / BO2       →  Motor M4
+
+
+ENCODERS (cuadratura: canal A + canal B por motor)
+--------------------------------------------------
+  En el Mega solo estos pines admiten attachInterrupt() para el canal A:
+  D2, D3, D18, D19, D20, D21
+  D2 y D3 ya están en PWM de motores → los encoders usan D18–D21 para A.
+
+  Motor   Canal A (INT)   Canal B (digital)
+  -----   -------------   ----------------
+  M1      D18             D32
+  M2      D19             D33
+  M3      D20             D34
+  M4      D21             D35
+
+  Encoder típico (+ hall / óptico):
+  VCC → 5 V Mega (si el datasheet permite 5 V)
+  GND → GND común
+  A   → pin A de la tabla
+  B   → pin B de la tabla
+
+  Si el sentido de RPM va al revés respecto al movimiento: intercambia A↔B
+  en ese encoder, o usa en firmware: m3inv=1 / m4inv=1 (ya implementado).
+
+
+UART ESP32 (opcional, Serial2 en el sketch)
+--------------------------------------------
+  Mega TX2 (D16) → RX ESP32
+  Mega RX2 (D17) → TX ESP32
+  GND común
+
+
+NO USAR A LA VEZ
+----------------
+  • Serial1 del Mega en D18 (TX) y D19 (RX) si los encoders M1/M2 usan D18/D19.
+    (En el código la telemetría por Serial1 va desactivada por defecto.)
+
+
+COMPRUEBA TRAS CABLEAR
+----------------------
+  1) STBY de ambos TB6612 en HIGH (medido respecto a GND).
+  2) VM presente solo en drivers (no mezclar 12 V con pin 5 V del Mega).
+  3) Comando: enc  → gira cada eje a mano; deben cambiar enc1…enc4.
+  4) Comando: lr=20 a baja velocidad; revisar giro y signo de RPM.
+
+
+Referencia diagrama lógico (texto)
+------------------------------------
+
+   [Bat 12V+]── VM(H1)    VM(H2)──┐
+        │                          │
+   [Bat GND]── GND Mega ── GND(H1) ── GND(H2) ── GND encoders
+
+   Mega D2–D5,22–30,26,31 → TB6612 (señales)
+   Mega D18–21,32–35      → Encoders
+
+================================================================================
