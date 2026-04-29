@@ -1,0 +1,416 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 9em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD26\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">29/04/2026</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">5:00:39 p. m.</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:00</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///E:\Materias\Dise%C3%B1o-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc" class="file"><acronym title="E:\Materias\Diseño-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc">E:\Materias\Diseño-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">20</td></tr>
+</table>
+</td>
+</table><a name="IDGCPTWKFT25Q0GVEA0NMAISCWBJP12HIUVZ4QSGDDV2UYRYKUKSMJ"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID1IM2JF0HMZSKFRNHSXSHYUC3HHPFATDEYE1IAF3SJJ4ONGM0F1G">Clearance Constraint (Gap=10mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDBV3QN1AIMBUFHNCWCN1YYLEIMK2F2XTOB04VCRBS0AY05T3MFIDP">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDVS5S23CJGAIQECKRGIA2TO4IYNTUHOMODT12VNN1VYUEBQDZ5ZPH">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDC15NV2EYNWDPCBEDGDOGLIRSBIKCPI2A25M3SBJXYRNE4OWN2WCL">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDXFDCADPAYIXAGTTZHRM2WEPC1MIRQ0C2JQNGWYLPYQFKDA1XDOOF">Width Constraint (Min=60mil) (Max=120mil) (Preferred=100mil) (InNet('GND'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDKYLZJ50OU23DCI1PJVY5WDW1QOULCNDYZFG25YB32GKOEXLJICRK">Width Constraint (Min=30mil) (Max=30mil) (Preferred=30mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDPYUX4IGZQ3ADPNG00ZB55FL4JJE0L01AOEAZWWJPQQ0QO44PR3VM">Width Constraint (Min=60mil) (Max=100mil) (Preferred=100mil) (InNet('+5'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDCHRTC4YU1O0YILH4PGVIA1CSDJAQBUHG2ARCHNJSDMMMP12QHWPG">Width Constraint (Min=60mil) (Max=100mil) (Preferred=100mil) (InNet('+12'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDFHJNVR1IBX4QNMCHBMGHHYUFJGVRXW2XMTNZB2EVO5RH3WSET5NN">Routing Topology Rule(Topology=Shortest) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID3T3YIZTSHXDJLEGMY5S4A1E2PFYJY5O5FHVO1YKEB2GYNEZYFSAE">Power Plane Connect Rule(Relief Connect )(Expansion=20mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDNFXKV1DJRNCVLGBRFME3MF1D4ETLLZQZTORU3NHIBXI3SNNCUKCE">Hole Size Constraint (Min=1mil) (Max=100mil) (All)</a></td>
+<td class="column2">2</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDD1D3YDMTLD5YNTHECSX4O04TDNNA5E5VCRNOD0NR1ECDHFPGW43O">Hole To Hole Clearance (Gap=10mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDQUSOUQBI1W4JGT2GPRYYMOQA2DC02JYIFD4K50D1GX4P1NJ2TVEF">Minimum Solder Mask Sliver (Gap=10mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDKLLVC5BAQVFRP4FYZDLD2LJ2DENNICDH3RWQSODL5S2NWQ25YDGC">Silk To Solder Mask (Clearance=10mil) (IsPad),(All)</a></td>
+<td class="column2">8</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDCSGDTC2COBS530LLA4TS1GDLE0M4KW1OGDG2TLRJ3XIAWGFLGTO">Silk to Silk (Clearance=10mil) (All),(All)</a></td>
+<td class="column2">7</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID3YW3V2DZLLNGB1Z2TEUZDME3CKVWMUH40ERISRNMWFSR0HVUJSRE">Net Antennae (Tolerance=0mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDG0SGTETUOBWDJZGUP1ADYYKQXQQZCQK42A4AAJYAX3TJ1A3STON">Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)</a></td>
+<td class="column2">3</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">20</td>
+</tr>
+</table><br><a name="IDNFXKV1DJRNCVLGBRFME3MF1D4ETLLZQZTORU3NHIBXI3SNNCUKCE"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Hole Size Constraint (Min=1mil) (Max=100mil) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Materias\Dise%C3%B1o-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7428.446mil|Location2.X=7563.554mil|Location1.Y=6141.446mil|Location2.Y=6276.554mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Materias\Diseño-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7428.446mil|Location2.X=7563.554mil|Location1.Y=6141.446mil|Location2.Y=6276.554mil|Absolute=True">Hole Size Constraint: (133.858mil &gt; 100mil) Pad PJ12V-VCC(7496mil,6209mil) on Multi-Layer Actual Slot Hole Width = 133.858mil</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Materias\Dise%C3%B1o-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=16014.446mil|Location2.X=16149.554mil|Location1.Y=4947.446mil|Location2.Y=5082.554mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Materias\Diseño-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=16014.446mil|Location2.X=16149.554mil|Location1.Y=4947.446mil|Location2.Y=5082.554mil|Absolute=True">Hole Size Constraint: (133.858mil &gt; 100mil) Pad PJ1-VCC(16082mil,5015mil) on Multi-Layer Actual Slot Hole Width = 133.858mil</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDKLLVC5BAQVFRP4FYZDLD2LJ2DENNICDH3RWQSODL5S2NWQ25YDGC"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=10mil) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Materias\Dise%C3%B1o-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12378.099mil|Location2.X=12389.349mil|Location1.Y=7062.375mil|Location2.Y=7073.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Materias\Diseño-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12378.099mil|Location2.X=12389.349mil|Location1.Y=7062.375mil|Location2.Y=7073.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (6.521mil &lt; 10mil) Between Area Fill (12368.985mil,7043.072mil) (12451.985mil,7090.072mil) on Top Overlay And Pad j4-M4+(12346.984mil,7068mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [6.521mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Materias\Dise%C3%B1o-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12378.099mil|Location2.X=12389.349mil|Location1.Y=7561.375mil|Location2.Y=7572.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Materias\Diseño-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12378.099mil|Location2.X=12389.349mil|Location1.Y=7561.375mil|Location2.Y=7572.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (6.521mil &lt; 10mil) Between Area Fill (12368.985mil,7540.072mil) (12451.985mil,7587.072mil) on Top Overlay And Pad j4-B4(12346.984mil,7567mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [6.521mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Materias\Dise%C3%B1o-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=14287.375mil|Location2.X=14298.625mil|Location1.Y=9311.115mil|Location2.Y=9322.365mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Materias\Diseño-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=14287.375mil|Location2.X=14298.625mil|Location1.Y=9311.115mil|Location2.Y=9322.365mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (6.52mil &lt; 10mil) Between Area Fill (14255mil,9320mil) (14338mil,9367mil) on Top Overlay And Pad j1-B1(14293mil,9280mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [6.52mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Materias\Dise%C3%B1o-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=14412.375mil|Location2.X=14423.625mil|Location1.Y=4869.635mil|Location2.Y=4880.885mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Materias\Diseño-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=14412.375mil|Location2.X=14423.625mil|Location1.Y=4869.635mil|Location2.Y=4880.885mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (6.52mil &lt; 10mil) Between Area Fill (14375mil,4825mil) (14458mil,4872mil) on Top Overlay And Pad j2-M2+(14418mil,4912mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [6.52mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Materias\Dise%C3%B1o-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=14786.375mil|Location2.X=14797.625mil|Location1.Y=9311.115mil|Location2.Y=9322.365mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Materias\Diseño-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=14786.375mil|Location2.X=14797.625mil|Location1.Y=9311.115mil|Location2.Y=9322.365mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (6.52mil &lt; 10mil) Between Area Fill (14752mil,9320mil) (14835mil,9367mil) on Top Overlay And Pad j1-M1+(14792mil,9280mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [6.52mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Materias\Dise%C3%B1o-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=14911.375mil|Location2.X=14922.625mil|Location1.Y=4869.635mil|Location2.Y=4880.885mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Materias\Diseño-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=14911.375mil|Location2.X=14922.625mil|Location1.Y=4869.635mil|Location2.Y=4880.885mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (6.52mil &lt; 10mil) Between Area Fill (14872mil,4825mil) (14955mil,4872mil) on Top Overlay And Pad j2-B2(14917mil,4912mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [6.52mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Materias\Dise%C3%B1o-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7627.644mil|Location2.X=7638.894mil|Location1.Y=6833.375mil|Location2.Y=6844.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Materias\Diseño-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7627.644mil|Location2.X=7638.894mil|Location1.Y=6833.375mil|Location2.Y=6844.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (6.534mil &lt; 10mil) Between Area Fill (7565.002mil,6818.919mil) (7648.002mil,6865.919mil) on Top Overlay And Pad j3-B3(7670.016mil,6839mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [6.534mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Materias\Dise%C3%B1o-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7627.644mil|Location2.X=7638.894mil|Location1.Y=7332.375mil|Location2.Y=7343.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Materias\Diseño-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7627.644mil|Location2.X=7638.894mil|Location1.Y=7332.375mil|Location2.Y=7343.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (6.534mil &lt; 10mil) Between Area Fill (7565.002mil,7315.919mil) (7648.002mil,7362.919mil) on Top Overlay And Pad j3-M3+(7670.016mil,7338mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [6.534mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDCSGDTC2COBS530LLA4TS1GDLE0M4KW1OGDG2TLRJ3XIAWGFLGTO"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk to Silk (Clearance=10mil) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Materias\Dise%C3%B1o-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7804.383mil|Location2.X=7815.633mil|Location1.Y=6945.375mil|Location2.Y=6956.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Materias\Diseño-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7804.383mil|Location2.X=7815.633mil|Location1.Y=6945.375mil|Location2.Y=6956.625mil|Absolute=True">Silk To Silk Clearance Constraint: (9.984mil &lt; 10mil) Between Text "A" (7820mil,6951mil) on Top Overlay And Track (7800.016mil,6744mil)(7800.016mil,7433mil) on Top Overlay Silk Text to Silk Clearance [9.984mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Materias\Dise%C3%B1o-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=14351.385mil|Location2.X=14362.635mil|Location1.Y=5223.892mil|Location2.Y=5235.142mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Materias\Diseño-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=14351.385mil|Location2.X=14362.635mil|Location1.Y=5223.892mil|Location2.Y=5235.142mil|Absolute=True">Silk To Silk Clearance Constraint: (1.061mil &lt; 10mil) Between Text "j2" (14337.016mil,5164.007mil) on Top Overlay And Track (12967.032mil,5235.048mil)(15658.96mil,5235.048mil) on Top Overlay Silk Text to Silk Clearance [1.061mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Materias\Dise%C3%B1o-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=15921.362mil|Location2.X=15932.612mil|Location1.Y=3804.759mil|Location2.Y=3816.009mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Materias\Diseño-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=15921.362mil|Location2.X=15932.612mil|Location1.Y=3804.759mil|Location2.Y=3816.009mil|Absolute=True">Silk To Silk Clearance Constraint: (8.807mil &lt; 10mil) Between Text "J6" (15887mil,3741mil) on Top Overlay And Track (15873.19mil,3819.788mil)(16223.582mil,3819.788mil) on Top Overlay Silk Text to Silk Clearance [8.807mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Materias\Dise%C3%B1o-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12219.092mil|Location2.X=12230.342mil|Location1.Y=7091.375mil|Location2.Y=7102.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Materias\Diseño-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12219.092mil|Location2.X=12230.342mil|Location1.Y=7091.375mil|Location2.Y=7102.625mil|Absolute=True">Silk To Silk Clearance Constraint: (5.466mil &lt; 10mil) Between Text "M-" (12260mil,7097mil) on Top Overlay And Track (12216.984mil,6973mil)(12216.984mil,7662mil) on Top Overlay Silk Text to Silk Clearance [5.466mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Materias\Dise%C3%B1o-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12219.092mil|Location2.X=12230.342mil|Location1.Y=6994.375mil|Location2.Y=7005.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Materias\Diseño-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12219.092mil|Location2.X=12230.342mil|Location1.Y=6994.375mil|Location2.Y=7005.625mil|Absolute=True">Silk To Silk Clearance Constraint: (5.466mil &lt; 10mil) Between Text "M+" (12260mil,7000mil) on Top Overlay And Track (12216.984mil,6973mil)(12216.984mil,7662mil) on Top Overlay Silk Text to Silk Clearance [5.466mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Materias\Dise%C3%B1o-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7524.375mil|Location2.X=7535.625mil|Location1.Y=6991.558mil|Location2.Y=7002.808mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Materias\Diseño-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7524.375mil|Location2.X=7535.625mil|Location1.Y=6991.558mil|Location2.Y=7002.808mil|Absolute=True">Silk To Silk Clearance Constraint: (8mil &lt; 10mil) Between Text "VCC" (7521mil,6988mil) on Top Overlay And Text "VCC" (7539mil,7060mil) on Top Overlay Silk Text to Silk Clearance [8mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Materias\Dise%C3%B1o-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7567.158mil|Location2.X=7578.408mil|Location1.Y=7054.375mil|Location2.Y=7065.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Materias\Diseño-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7567.158mil|Location2.X=7578.408mil|Location1.Y=7054.375mil|Location2.Y=7065.625mil|Absolute=True">Silk To Silk Clearance Constraint: (2.466mil &lt; 10mil) Between Text "VCC" (7539mil,7060mil) on Top Overlay And Track (7579.016mil,6744mil)(7579.016mil,7433mil) on Top Overlay Silk Text to Silk Clearance [2.466mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDG0SGTETUOBWDJZGUP1ADYYKQXQQZCQK42A4AAJYAX3TJ1A3STON"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Materias\Dise%C3%B1o-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13968mil|Location2.X=13970mil|Location1.Y=7237mil|Location2.Y=7239mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Materias\Diseño-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13968mil|Location2.X=13970mil|Location1.Y=7237mil|Location2.Y=7239mil|Absolute=True">Height Constraint: Component l1-l298n (13969mil,7238mil) on Top Layer Actual Height = 1051.181mil</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Materias\Dise%C3%B1o-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9785mil|Location2.X=9787mil|Location1.Y=6534mil|Location2.Y=6536mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Materias\Diseño-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9785mil|Location2.X=9787mil|Location1.Y=6534mil|Location2.Y=6536mil|Absolute=True">Height Constraint: Component l2-l298n (9786mil,6535mil) on Top Layer Actual Height = 1051.181mil</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Materias\Dise%C3%B1o-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13967mil|Location2.X=13969mil|Location1.Y=2452mil|Location2.Y=2454mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Materias\Diseño-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13967mil|Location2.X=13969mil|Location1.Y=2452mil|Location2.Y=2454mil|Absolute=True">Height Constraint: Component l3-l298n (13968mil,2453mil) on Top Layer Actual Height = 1051.181mil</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>
