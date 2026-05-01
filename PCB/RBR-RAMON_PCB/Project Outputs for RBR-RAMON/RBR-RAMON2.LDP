@@ -1,0 +1,3 @@
+Layer Pairs Export File for PCB: E:\Materias\Diseño-mecatronico-2\RAMON\RBR-RAMON\PCB\RBR-RAMON_PCB\RBR-RAMON2.PcbDoc
+LayersSetName=Top_Bot_Thru_Holes|DrillFile=rbr-ramon2-roundholes.txt|DrillLayers=gtl,gbl
+LayersSetName=Top_Bot_Slot_Holes|DrillFile=rbr-ramon2-slotholes.txt|DrillLayers=gtl,gbl

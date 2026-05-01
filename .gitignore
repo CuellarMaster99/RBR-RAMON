@@ -1,0 +1,5 @@
+# Instaladores / binarios grandes (límite GitHub ~100 MB)
+**/CursorUserSetup*.exe
+
+# Carpeta temporal de instalación (copia accidental del .exe)
+PCB/scoped_dir*/

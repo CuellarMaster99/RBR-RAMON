@@ -1,0 +1,13 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [RBR-RAMON.PrjPcb]
+   Generated File[RBR-RAMON2-RoundHoles.TXT]
+   Generated File[RBR-RAMON2-SlotHoles.TXT]
+   Generated File[RBR-RAMON2.LDP]
+   Generated File[RBR-RAMON2.DRR]
+
+
+Files Generated   : 4
+Documents Printed : 0
+
+Finished Output Generation At 8:54:05 p. m. On 29/04/2026
