@@ -151,6 +151,23 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=
 
+[Document7]
+DocumentPath=Antena_lora_receptora.SchDoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=0
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=OHRABFQF
+
 [GeneratedDocument1]
 DocumentPath=Project Outputs for RBR-RAMON\Design Rule Check - RBR-RAMON2.html
 DItemRevisionGUID=
@@ -1281,7 +1298,7 @@ UpdateToLatestRevision=1
 PartTypes=0
 
 [NetInfos]
-Net1=NetName=+12|NetColor=clLime
+Net1=NetName=+12|NetColor=clRed
 Net2=NetName=+5|NetColor=clYellow
 Net3=NetName=GND|NetColor=$00471B74
 Net4=NetName=NetA?_2|NetColor=clBlack
